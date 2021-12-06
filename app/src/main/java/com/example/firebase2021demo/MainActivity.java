@@ -40,5 +40,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void signIn(View view) {
+        mAuth.signInWithEmailAndPassword("MyTestEmail@abc.com", "badPassword")
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            System.out.println("Testing: "+mAuth.getCurrentUser().getEmail());
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            System.out.println("Testing: failed to create account");
+                        }
+                    }
+                });
     }
 }
